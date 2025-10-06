@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMachine } from '@xstate/react';
 import { trafficLightMachine } from './trafficLightMachine';
+import './TrafficLight.css';
 
 const TrafficLight: React.FC = () => {
   const [state, send] = useMachine(trafficLightMachine);

@@ -1,13 +1,17 @@
-import TrafficLight from './TrafficLight'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import TrafficLightPage from './traffic-light/TrafficLightPage';
+import './App.css';
 
 function App() {
   return (
-    <div className="app">
-      <h1>Traffic Light State Machine Example</h1>
-      <TrafficLight />
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/traffic-light" element={<TrafficLightPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
