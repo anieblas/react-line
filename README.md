@@ -1,27 +1,38 @@
-# Traffic Light State Machine Example
+# Design Patterns in React
 
-A React application demonstrating state machine patterns using XState for managing traffic light behavior.
+A collection of interactive examples demonstrating software design patterns implemented with React, TypeScript, and modern state management libraries.
 
-## Features
+## Current Examples
 
-- **State Machine**: Uses XState to manage traffic light states (red, yellow, green)
-- **Automatic Transitions**: Lights cycle automatically with realistic timing
-- **Manual Controls**: Override automatic behavior with manual state changes
-- **Visual Feedback**: Animated lights with glow effects
-- **TypeScript**: Full TypeScript support for type safety
+### 🚦 State Machine Pattern
+**Traffic Light State Machine** - Interactive traffic light simulation using XState for managing complex state transitions.
 
-## State Machine Behavior
+- **Location**: `/traffic-light`
+- **Features**: Automatic cycling, manual controls, visual feedback
+- **Technologies**: XState, React Hooks
 
-The traffic light follows these transitions:
+## Project Structure
 
-- **Red** (3s) → **Green** (3s) → **Yellow** (1s) → **Red** (repeats)
-- Manual controls allow forcing any state at any time
+```
+src/
+├── components/
+│   └── LandingPage.tsx      # Main landing page with example links
+├── traffic-light/
+│   ├── TrafficLight.tsx     # Traffic light component
+│   ├── TrafficLight.css     # Traffic light specific styles
+│   ├── TrafficLightPage.tsx # Page wrapper for traffic light example
+│   └── trafficLightMachine.ts # XState machine definition
+├── App.tsx                  # Main app with routing
+├── App.css                  # Global styles (landing page, navigation)
+└── main.tsx                # Application entry point
+```
 
 ## Technologies Used
 
 - **React 19** - UI framework
 - **TypeScript** - Type safety
 - **XState** - State machine library
+- **React Router** - Client-side routing
 - **Vite** - Build tool and dev server
 - **pnpm** - Package manager
 
@@ -53,32 +64,16 @@ pnpm lint
 
 The application will be available at `http://localhost:5173/`
 
-## Project Structure
+## Adding New Examples
 
-```
-src/
-├── App.tsx              # Main application component
-├── App.css              # Application styles
-├── TrafficLight.tsx     # Traffic light component with state machine
-├── trafficLightMachine.ts # XState machine definition
-└── main.tsx            # Application entry point
-```
+To add a new design pattern example:
 
-## State Machine Details
+1. Create a new folder under `src/` (e.g., `src/observer-pattern/`)
+2. Create your components and logic files
+3. Create a page component (e.g., `ObserverPatternPage.tsx`)
+4. Add a route in `App.tsx`
+5. Add a card to the landing page in `LandingPage.tsx`
 
-The traffic light machine is defined in `trafficLightMachine.ts` and includes:
+## Contributing
 
-- Three states: `red`, `yellow`, `green`
-- Automatic transitions with timers
-- Manual override events: `NEXT`, `MANUAL_RED`, `MANUAL_YELLOW`, `MANUAL_GREEN`
-- Proper state management with XState's React integration
-
-## Learning Objectives
-
-This example demonstrates:
-
-- State machine design patterns
-- React integration with XState
-- TypeScript with complex state management
-- Component composition and styling
-- Event-driven programming
+This project serves as a learning resource for design patterns in React. Feel free to contribute additional examples or improvements!
