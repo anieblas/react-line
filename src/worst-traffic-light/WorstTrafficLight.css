@@ -1,0 +1,399 @@
+/* Worst Traffic Light Styles - Shows the absolute horror of boolean state management */
+.worst-traffic-light-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #8b0000 0%, #2f0000 100%);
+  min-height: 100vh;
+  color: white;
+}
+
+.worst-traffic-light {
+  position: relative;
+  width: 120px;
+  height: 320px;
+  background: #333;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.light {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #555;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.light.active {
+  box-shadow: 0 0 30px currentColor, inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.light.red.active {
+  background: radial-gradient(circle, #ff6666, #cc0000);
+  color: #ff6666;
+}
+
+.light.yellow.active {
+  background: radial-gradient(circle, #ffff66, #cccc00);
+  color: #ffff66;
+}
+
+.light.green.active {
+  background: radial-gradient(circle, #66ff66, #00cc00);
+  color: #66ff66;
+}
+
+.light.emergency {
+  background: radial-gradient(circle, #ffaa44, #ff6600);
+  color: #ffaa44;
+  animation: worst-flash 0.5s infinite alternate;
+}
+
+.light.fault {
+  background: radial-gradient(circle, #ff4466, #aa0022);
+  color: #ff4466;
+  animation: worst-pulse 1s infinite;
+}
+
+.light.pedestrian {
+  background: radial-gradient(circle, #66ff66, #00cc00);
+  color: #66ff66;
+}
+
+@keyframes worst-flash {
+  0% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes worst-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pedestrian-signal {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: #222;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #555;
+}
+
+.pedestrian-walk {
+  font-size: 2rem;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.pedestrian-walk.active {
+  opacity: 1;
+  animation: worst-walk 0.8s infinite;
+}
+
+@keyframes worst-walk {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+
+.worst-controls {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.worst-controls h3 {
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.state-red { color: #ff6666; }
+.state-yellow { color: #ffff66; }
+.state-green { color: #66ff66; }
+.state-emergency { color: #ffaa44; animation: worst-flash 0.5s infinite alternate; }
+.state-emergency_flash_off { color: #ffaa44; opacity: 0.3; }
+.state-pedestrian_green { color: #66ff66; }
+.state-fault { color: #ff4466; animation: worst-pulse 1s infinite; }
+.state-invalid_state { color: #ff0000; font-weight: bold; }
+
+.boolean-states {
+  background: rgba(255, 0, 0, 0.2);
+  border: 2px solid #ff4444;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.boolean-states h4 {
+  margin: 0 0 0.5rem 0;
+  color: #ffaaaa;
+  font-size: 1rem;
+}
+
+.state-indicators {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.5rem;
+}
+
+.bool-indicator {
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.bool-indicator.true {
+  background: rgba(255, 255, 255, 0.3);
+  color: #aaffaa;
+}
+
+.bool-indicator.false {
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffaaaa;
+}
+
+.warning {
+  color: #ffaaaa;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0.5rem 0 0 0;
+}
+
+.worst-status-indicators {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.status-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.status-value {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.worst-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+button {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.worst-advanced-controls {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.worst-advanced-controls h4 {
+  margin: 0 0 1rem 0;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.control-group {
+  margin: 1rem 0;
+}
+
+.control-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.weather-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.weather-buttons button {
+  flex: 1;
+  min-width: 80px;
+}
+
+.weather-buttons button.active {
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.emergency-btn.active {
+  background: linear-gradient(45deg, #ff6600, #ffaa44);
+  animation: worst-flash 0.5s infinite alternate;
+}
+
+.fault-btn.active {
+  background: linear-gradient(45deg, #ff4466, #aa0022);
+  animation: worst-pulse 1s infinite;
+}
+
+.worst-transition-history {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.worst-transition-history h4 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.history-item {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.worst-info {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.worst-info p {
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.worst-info ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.worst-info li {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.comparison {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .worst-traffic-light-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .worst-traffic-light {
+    width: 100px;
+    height: 280px;
+    padding: 15px;
+  }
+
+  .light {
+    width: 60px;
+    height: 60px;
+  }
+
+  .worst-controls {
+    padding: 1rem;
+  }
+
+  .worst-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .worst-status-indicators {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .weather-buttons {
+    flex-direction: column;
+  }
+
+  .history-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .state-indicators {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

@@ -107,8 +107,36 @@
   transition: background-color 0.3s ease;
 }
 
-.example-link:hover {
-  background: #535bf2;
+.example-card.bad-example {
+  background: linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%);
+  border: 2px solid #ff6b6b;
+}
+
+.example-card.bad-example:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+}
+
+.example-card.bad-example .example-link {
+  background: #ff6b6b;
+}
+
+.example-card.worst-example {
+  background: linear-gradient(135deg, #330000 0%, #000000 100%);
+  border: 2px solid #660000;
+}
+
+.example-card.worst-example:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(102, 0, 0, 0.5);
+}
+
+.example-card.worst-example .example-link {
+  background: #660000;
+}
+
+.example-card.worst-example .example-link:hover {
+  background: #990000;
 }
 
 .footer {

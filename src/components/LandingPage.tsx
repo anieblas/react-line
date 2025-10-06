@@ -12,10 +12,28 @@ const LandingPage: React.FC = () => {
       <main className="examples-grid">
         <div className="example-card">
           <div className="example-icon">🚦</div>
-          <h3>State Machine</h3>
+          <h3>State Machine (Good)</h3>
           <p>Traffic light state machine using XState for managing complex state transitions</p>
           <Link to="/traffic-light" className="example-link">
             View Example →
+          </Link>
+        </div>
+
+        <div className="example-card bad-example">
+          <div className="example-icon">❌</div>
+          <h3>Imperative Code (Bad)</h3>
+          <p>The same traffic light implemented with traditional React hooks - see why state machines are better!</p>
+          <Link to="/bad-traffic-light" className="example-link">
+            View Anti-Pattern →
+          </Link>
+        </div>
+
+        <div className="example-card worst-example">
+          <div className="example-icon">💀</div>
+          <h3>Boolean State Horror</h3>
+          <p>The ABSOLUTE WORST way: separate boolean variables for each light. Chaos guaranteed!</p>
+          <Link to="/worst-traffic-light" className="example-link">
+            View Nightmare →
           </Link>
         </div>
 
