@@ -47,6 +47,49 @@
   margin-right: auto;
 }
 
+.patterns-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pattern-group {
+  margin-bottom: 3rem;
+}
+
+.pattern-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.pattern-description {
+  font-size: 1.1rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.example-card.good-example {
+  background: linear-gradient(135deg, #e6f7ff 0%, #cceeff 100%);
+  border: 2px solid #4a90e2;
+}
+
+.example-card.good-example:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+}
+
+.example-card.good-example .example-link {
+  background: #4a90e2;
+}
+
 .example-card {
   background: white;
   border-radius: 12px;
