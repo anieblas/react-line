@@ -9,10 +9,13 @@ export const trafficLightMachine = createMachine({
         NEXT: 'green',
         MANUAL_RED: 'red',
         MANUAL_YELLOW: 'yellow',
-        MANUAL_GREEN: 'green'
+        MANUAL_GREEN: 'green',
+        PEDESTRIAN_REQUEST: 'pedestrian_green',
+        EMERGENCY: 'emergency',
+        FAULT: 'fault',
       },
       after: {
-        3000: 'green' // Auto transition after 3 seconds
+        3000: 'green'
       }
     },
     yellow: {
@@ -20,10 +23,12 @@ export const trafficLightMachine = createMachine({
         NEXT: 'red',
         MANUAL_RED: 'red',
         MANUAL_YELLOW: 'yellow',
-        MANUAL_GREEN: 'green'
+        MANUAL_GREEN: 'green',
+        EMERGENCY: 'emergency',
+        FAULT: 'fault',
       },
       after: {
-        1000: 'red' // Auto transition after 1 second
+        1000: 'red'
       }
     },
     green: {
@@ -31,11 +36,45 @@ export const trafficLightMachine = createMachine({
         NEXT: 'yellow',
         MANUAL_RED: 'red',
         MANUAL_YELLOW: 'yellow',
-        MANUAL_GREEN: 'green'
+        MANUAL_GREEN: 'green',
+        PEDESTRIAN_REQUEST: 'pedestrian_green',
+        EMERGENCY: 'emergency',
+        FAULT: 'fault',
       },
       after: {
-        3000: 'yellow' // Auto transition after 3 seconds
+        3000: 'yellow'
       }
-    }
+    },
+    pedestrian_green: {
+      on: {
+        PEDESTRIAN_DONE: 'red',
+        EMERGENCY: 'emergency',
+        FAULT: 'fault',
+      },
+      after: {
+        8000: 'red', // Give pedestrians 8 seconds to cross
+      },
+    },
+    emergency: {
+      on: {
+        CLEAR_EMERGENCY: 'red',
+      },
+      after: {
+        500: 'emergency_flash_off',
+      },
+    },
+    emergency_flash_off: {
+      on: {
+        CLEAR_EMERGENCY: 'red',
+      },
+      after: {
+        500: 'emergency',
+      },
+    },
+    fault: {
+      on: {
+        RESET_FAULT: 'red',
+      },
+    },
   }
 });
